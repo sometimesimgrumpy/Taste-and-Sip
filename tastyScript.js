@@ -16,11 +16,8 @@ async function init() {
         event.preventDefault();
         let userInputEl = document.querySelector("#ingInput");
         var userInput = userInputEl.value;
-        console.log(userInput);
         let data = await getRecipes(userInput);
-        console.log(data);
         let organizedData = organizeData(data.results);
-        console.log(organizedData);
         createElements(organizedData.length);
         // window.location.href = "Url for search page";
         fillElements(organizedData);
@@ -63,56 +60,17 @@ function fillElements(data) {
     // 9 total elements in search result div, so 0-8
     for (let i = 0; i < data.length; i++) {
         let dataArray = data[i];
-        console.log(dataArray);
         document.querySelector("#recipe"+i).textContent = dataArray[0];
         document.querySelector("#descrip"+i).textContent = dataArray[1];
         let imgIcon = document.querySelector("#thumbImg"+i)
-        imgIcon.setAttribute("href", dataArray[2]);
-        document.querySelector("#servings"+i).textContent = dataArray[3];
-        // searchResultsEl.children[4].textContent = dataArray[i];
-        // searchResultsEl.children[5].textContent = dataArray[i];
-        // let imgIcon = document.getElementById("");
-        // imgIcon.setAttribute("href",dataArray[i]);
-        // searchResultsEl.children[6].textContent = dataArray[i];
-        // searchResultsEl.children[].textContent = dataArray[i];
-        // searchResultsEl.children[i].textContent = dataArray[i];
-        // searchResultsEl.children[i].textContent = dataArray[i];
-    
+        imgIcon.setAttribute("src", dataArray[2]);
+        document.querySelector("#servings"+i).textContent = dataArray[3];    
     }
 }
 
-// function createAndFillElements(data) {
-//     let mainDiv = document.createElement("div");
-//     let imgDiv = document.createElement("div");
-//     let img = document.createElement("img");
-//     let textDiv = document.createElement("div");
-//     let recipeName = document.createElement("h3");
-//     let descrip = document.createElement("p");
-//     let servings = document.createElement("p");
-//     let buttonDiv = document.createElement("div");
-//     let saveButton = document.createElement("div");
-//     let likeIcon = document.createElement("i");
-//     let searchResultsEl = document.querySelector("#dataDump");
-
-//     img.setAttribute("class", "thumbImg");
-//     likeIcon.setAttribute("class", "fa fa-heart");
-//     likeIcon.setAttribute("aria-hidden", "true");
-
-//     imgDiv.appendChild(img);
-//     textDiv.appendChild(recipeName);
-//     textDiv.appendChild(descrip);
-//     textDiv.appendChild(servings);
-//     buttonDiv.appendChild(saveButton);
-//     mainDiv.appendChild(imgDiv);
-//     mainDiv.appendChild(textDiv);
-//     mainDiv.appendChild(buttonDiv);
- 
-
-//     searchResultsEl.appendChild(mainDiv);
-// }
 
 function createElements(length) {
-    for(let i=0; i <length; i++) {
+    for(let i=0; i<length; i++) {
     let mainDiv = document.createElement("div");
     let imgDiv = document.createElement("div");
     let img = document.createElement("img");
