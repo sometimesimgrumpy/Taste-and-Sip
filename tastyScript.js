@@ -6,22 +6,37 @@ const fetchOptions = {
     }
 };
 
- var index = 0;
- var userInput;
+var index = 0;
+var isInitialSearch = true;
 
 
 async function init() {
     let submit = document.querySelector("#submitButton");
     submit.addEventListener("click", async function(event) {
         event.preventDefault();
+        if(isInitialSearch) {
         let userInputEl = document.querySelector("#ingInput");
         var userInput = userInputEl.value;
         let data = await getRecipes(userInput);
         let organizedData = organizeData(data.results);
+        console.log(organizedData);
         createElements(organizedData.length);
         // window.location.href = "Url for search page";
         fillElements(organizedData);
         userInputEl.value="";
+        isInitialSearch = false;
+        } else {
+        removeDivs();
+        let userInputEl = document.querySelector("#ingInput");
+        var userInput = userInputEl.value;
+        let data = await getRecipes(userInput);
+        let organizedData = organizeData(data.results);
+        console.log(organizedData);
+        createElements(organizedData.length);
+        // window.location.href = "Url for search page";
+        fillElements(organizedData);
+        userInputEl.value="";
+        }    
     });
 
 }
@@ -106,6 +121,12 @@ function createElements(length) {
     }
 }
 
+function removeDivs() {
+    let searchResultsEl = document.querySelector("#dataDump");
+    while (searchResultsEl.lastChild) {
+        searchResultsEl.removeChild(searchResultsEl.lastChild);
+    }
+}
 
 init();
 
