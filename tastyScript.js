@@ -79,7 +79,7 @@ function createElements(length) {
     let descrip = document.createElement("p");
     let servings = document.createElement("p");
     let buttonDiv = document.createElement("div");
-    let saveButton = document.createElement("div");
+    let saveButton = document.createElement("button");
     let likeIcon = document.createElement("i");
     let searchResultsEl = document.querySelector("#dataDump");
 
@@ -96,6 +96,7 @@ function createElements(length) {
     textDiv.appendChild(recipeName);
     textDiv.appendChild(descrip);
     textDiv.appendChild(servings);
+    saveButton.appendChild(likeIcon);
     buttonDiv.appendChild(saveButton);
     mainDiv.appendChild(imgDiv);
     mainDiv.appendChild(textDiv);
