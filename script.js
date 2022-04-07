@@ -10,7 +10,8 @@ function drinkBtn(requestUrl) {
     fetch(requestUrl)
     .then(function (response) {
         if (response.status === 200) {
-            responseText.textContent = response.status;
+            responseText.textContent;
+            console.log(response.status);
         }
         return response.json()
     })
@@ -21,19 +22,20 @@ function drinkBtn(requestUrl) {
     })
 }
 
-// Object.onclick = displayCocktail;
 function displayCocktail(data) {
     const drink = data;
     const drink_div = document.getElementById("drinkName");
 
-    const drink_name = drink.drinks[0].strDrink; //error with undefined drinks
+    const drink_name = drink.drinks[0].strDrink; 
     console.log(drink_name);
 
-    const heading = document.createElement("h1");
+    drink_div.append(drink_name);
+
+    // const heading = document.createElement("h1");
     
-    const drink_btn_result = document.getElementById("drinkBtnResult");
-    heading.innerHTML = drink_btn_result;
-    drink_btn_result.appendChild(heading);
+    // const drink_btn_result = document.getElementById("drinkBtnResult");
+    // heading.innerHTML = drink_btn_result;
+    // drink_btn_result.appendChild(heading);
 
     // const drink_img = document.createElement("img");
     // drink_img.src = drink.strDrinkThumb;
