@@ -10,25 +10,30 @@
     <title>Recipe Title</title>
 </head>
 
+<!-- recipe heading section -->
 <body>
-    <section class="recipeTitle">
-        <h1 id="title">Recipe Title</h1>
+    <section id="recipeTitle" class="has-background-warning">
+        <h1 id="title" class="is-size-1-fullhd">Recipe Title</h1>
         <img src="./assets/images/food.jpg" id="foodImage">
         <img src="./assets/images/drinks.jpg" id="drinkImage">
     </section> 
 
-    <section id="foodRecipe" class="is-size-4 has-text-centered box">
-        <h2 id="recipeInfo">Recipe Info</h2>
-        <div></div>
+
+    <!-- this section logs out the food recipe info -->
+    <section id="foodRecipe" class="has-background-warning">
+        <h2 id="recipeInfo" class="is-size-3-desktop has-text-centered box is-family-primary">Recipe Info</h2>
+        <div class="Food"></div>
     </section>
 
-    <aside id="drinkRecipe">
-        <h3 id="drinks" class="has-text-centered is-size-4">Drinks</h3>
-         <p></p>
-         <div id="DrinkButton"> 
-         <button onclick="drinkBtn('https://thecocktaildb.com/api/json/v1/1/random.php')">Click</button>
+    <!-- this section logs out the drink -->
+    <aside id="drinkRecipe" class="has-background-warning is-family-primary	">
+        <h3 id="drinks" class="has-text-centered is-size-4-desktop box">Drinks</h3>
+         <di class="randomDrink"></di>
+
+         <div id="DrinkButton" class="is-size-6-desktop"> 
+            <button onclick="drinkBtn('https://thecocktaildb.com/api/json/v1/1/random.php')">Click</button>
         </div>
-            <div></div>
+            <div class="drink"></div>
            
             
     </aside>
