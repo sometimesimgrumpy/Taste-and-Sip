@@ -3,11 +3,10 @@ var requestUrl = "https://thecocktaildb.com/api/json/v1/1/random.php";
 
 var responseText = document.getElementById("drinkName");
 
-console.log(drinkBtn(requestUrl))
-
-Object.onclick = function(){drinkBtn};
+// console.log(drinkBtn(requestUrl))
 
 function drinkBtn(requestUrl) {
+    var data
     fetch(requestUrl)
     .then(function (response) {
         if (response.status === 200) {
@@ -17,24 +16,31 @@ function drinkBtn(requestUrl) {
     })
     .then(function (response){
         console.log(response);
+        data = response;
+        displayCocktail(data);
     })
 }
 
+// Object.onclick = displayCocktail;
 function displayCocktail(data) {
-    const drink = data.drinks[0];
+    const drink = data;
     const drink_div = document.getElementById("drinkName");
 
-    const drink_name = drink.strDrink;
+    const drink_name = drink.drinks[0].strDrink; //error with undefined drinks
+    console.log(drink_name);
+
     const heading = document.createElement("h1");
-    heading.innerHTML = drink_name;
-    drink_div.appendChild(heading);
+    
+    const drink_btn_result = document.getElementById("drinkBtnResult");
+    heading.innerHTML = drink_btn_result;
+    drink_btn_result.appendChild(heading);
 
-    const drink_img = document.createElement("img");
-    drink_img.src = drink.strDrinkThumb;
-    drink_div.appendChild(drink_img);
-    document.body.style.backgroundImage = "url('" + drink.strDrinkThumb + "')";
+    // const drink_img = document.createElement("img");
+    // drink_img.src = drink.strDrinkThumb;
+    // drink_div.appendChild(drink_img);
+    // document.body.style.backgroundImage = "url('" + drink.strDrinkThumb + "')";
 
-    // drink_info for cocktail ingredients
+    // drink_info for cocktail ingredients into <h2>
 
 }
 
