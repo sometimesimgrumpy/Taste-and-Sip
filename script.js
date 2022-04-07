@@ -29,6 +29,7 @@ function displayCocktail(data) {
     const drink_name = drink.drinks[0].strDrink; 
     console.log(drink_name);
 
+    drink_div.innerHTML = "";
     drink_div.append(drink_name);
 
     // const heading = document.createElement("h1");
