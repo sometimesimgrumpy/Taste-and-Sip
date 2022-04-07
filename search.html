@@ -42,17 +42,19 @@
     <h1 class="title has-text-warning-dark text has-text-centered">Taste & Sip</h1>
     
     <div class="tile is-ancestor is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen is-1-fullhd">
-        <input class="input is-danger tile is-half is-offset-one-quarter mx-6" type="text" placeholder="Ingredients, seperate by comma">
+        <input id="ingInput" class="input is-danger tile is-half is-offset-one-quarter mx-6" type="text" placeholder="Ingredients, seperate by comma">
         
-        <button class="button is-normal is-warning tile is-2 mx-6" type="submit">Search</button>
+        <button class="button is-normal is-warning tile is-2 mx-6" type="submit" id="submitButton">Search</button>
     </div>
     <h2 class="subtitle has-text-warning-dark">
     </h2>
 </section>
 
+<section id="dataDump"></section>
 
 
 
 
+<script src="./tastyScript.js"></script>
 </body>
 </html>

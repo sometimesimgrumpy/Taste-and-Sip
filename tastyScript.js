@@ -1,58 +1,66 @@
 const fetchOptions = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
-        'X-RapidAPI-Key': 'fef51a61f7mshf38ff76f58269cdp15072cjsnea9cce855f99'
-    }
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Host": "tasty.p.rapidapi.com",
+    "X-RapidAPI-Key": "fef51a61f7mshf38ff76f58269cdp15072cjsnea9cce855f99",
+  },
 };
 
+var submit = document.querySelector("#submitButton");
 var index = 0;
 var isInitialSearch = true;
 
+function recipeSearch() {
+  //   if(isInitialSearch) {
+  let userInputEl = document.querySelector("#ingInput");
+  var userInput = userInputEl.value;
 
-async function init() {
-    let submit = document.querySelector("#submitButton");
-    submit.addEventListener("click", async function(event) {
-        event.preventDefault();
-        if(isInitialSearch) {
-        let userInputEl = document.querySelector("#ingInput");
-        var userInput = userInputEl.value;
-        let data = await getRecipes(userInput);
-        let organizedData = organizeData(data.results);
-        console.log(organizedData);
-        createElements(organizedData.length);
-        // window.location.href = "Url for search page";
-        fillElements(organizedData);
-        userInputEl.value="";
-        isInitialSearch = false;
-        } else {
-        removeDivs();
-        let userInputEl = document.querySelector("#ingInput");
-        var userInput = userInputEl.value;
-        let data = await getRecipes(userInput);
-        let organizedData = organizeData(data.results);
-        console.log(organizedData);
-        createElements(organizedData.length);
-        // window.location.href = "Url for search page";
-        fillElements(organizedData);
-        userInputEl.value="";
-        }    
+  getRecipes(userInput);
+
+  // let organizedData = organizeData(data.results);
+
+  // // window.location.href = "Url for search page";
+  // fillElements(organizedData);
+  // userInputEl.value="";
+  // isInitialSearch = false;
+  // } else {
+  // removeDivs();
+  // let userInputEl = document.querySelector("#ingInput");
+  // var userInput = userInputEl.value;
+  // let data = await getRecipes(userInput);
+  // let organizedData = organizeData(data.results);
+  // console.log(organizedData);
+  // createElements(organizedData.length);
+  // // window.location.href = "Url for search page";
+  // fillElements(organizedData);
+  // userInputEl.value="";
+  // }
+}
+
+// async function init() {
+
+submit.addEventListener("click", recipeSearch);
+
+// }
+
+function getRecipes(searchInput) {
+  const Url =
+    "https://tasty.p.rapidapi.com/recipes/list?from=" +
+    index +
+    "&size=5&q=" +
+    searchInput;
+  fetch(Url, fetchOptions)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (rawData) {
+      organizeData(rawData.results);
     });
-
 }
 
-async function getRecipes(searchInput) {
-
-    const Url = 'https://tasty.p.rapidapi.com/recipes/list?from=' + index + "&size=5&q=" + searchInput;
-    const response = await fetch(Url, fetchOptions);
-    const rawData = await response.json();
-        return rawData;  
-}
-
-function organizeData (data) {
-    let searchData = [];
-    for (let i = 0; i < data.length; i++) {
-        
+function organizeData(data) {
+  let searchData = [];
+  for (let i = 0; i < data.length; i++) {
     const name = data[i].name;
     const descr = data[i].description;
     const img = data[i].thumbnail_url;
@@ -61,31 +69,34 @@ function organizeData (data) {
     const time = data[i].total_time_minutes;
     let altTime;
     if (data[i].total_time_tier?.display_tier !== null) {
-        altTime = data[i].total_time_tier?.display_tier;
+      altTime = data[i].total_time_tier?.display_tier;
     } else {
-        altTime = "";
+      altTime = "";
     }
     const array = [name, descr, img, yields, ingredients, time, altTime];
     searchData.push(array);
-    }
-    return searchData;
+  }
+  // return searchData;
+  createElements(searchData.length, data);
 }
 
-function fillElements(data) {
-    // 9 total elements in search result div, so 0-8
-    for (let i = 0; i < data.length; i++) {
-        let dataArray = data[i];
-        document.querySelector("#recipe"+i).textContent = dataArray[0];
-        document.querySelector("#descrip"+i).textContent = dataArray[1];
-        let imgIcon = document.querySelector("#thumbImg"+i)
-        imgIcon.setAttribute("src", dataArray[2]);
-        document.querySelector("#servings"+i).textContent = dataArray[3];    
-    }
-}
+// function fillElements(data) {
+//   console.log(data);
+//   // 9 total elements in search result div, so 0-8
+//   for (let i = 0; i < data.length; i++) {
+//     let dataArray = data[i];
+//     // document.querySelector("#recipe"+i).textContent = dataArray[i];
+//     // document.querySelector("#descrip"+i).textContent = dataArray.description;
+//     // let imgIcon = document.querySelector("#thumbImg"+i)
+//     // imgIcon.setAttribute("src", dataArray.thumbnail_url);
+//     // document.querySelector("#servings"+i).textContent = dataArray[3];
+//   }
+// }
 
-
-function createElements(length) {
-    for(let i=0; i<length; i++) {
+function createElements(length, data) {
+  for (let i = 0; i < length; i++) {
+      console.log(data)
+    var dataArray = data[i];
     let mainDiv = document.createElement("div");
     let imgDiv = document.createElement("div");
     let img = document.createElement("img");
@@ -99,13 +110,16 @@ function createElements(length) {
     let searchResultsEl = document.querySelector("#dataDump");
 
     img.setAttribute("class", "thumbImg");
+    img.setAttribute("src", dataArray.thumbnail_url)
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
 
-    img.setAttribute("id", "thumbImg"+i);
-    recipeName.setAttribute("id", "recipe"+i);
-    descrip.setAttribute("id", "descrip"+i);
-    servings.setAttribute("id", "servings"+i);
+    img.setAttribute("id", "thumbImg" + i);
+    recipeName.setAttribute("id", "recipe" + i);
+    recipeName.textContent = dataArray.name
+    descrip.setAttribute("id", "descrip" + i);
+    servings.setAttribute("id", "servings" + i);
+    descrip.textContent = dataArray.description;
 
     imgDiv.appendChild(img);
     textDiv.appendChild(recipeName);
@@ -118,16 +132,14 @@ function createElements(length) {
     mainDiv.appendChild(buttonDiv);
 
     searchResultsEl.appendChild(mainDiv);
-    }
+  }
 }
 
 function removeDivs() {
-    let searchResultsEl = document.querySelector("#dataDump");
-    while (searchResultsEl.lastChild) {
-        searchResultsEl.removeChild(searchResultsEl.lastChild);
-    }
+  let searchResultsEl = document.querySelector("#dataDump");
+  while (searchResultsEl.lastChild) {
+    searchResultsEl.removeChild(searchResultsEl.lastChild);
+  }
 }
 
-init();
-
-
+// init();
