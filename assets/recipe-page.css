@@ -1,0 +1,69 @@
+.recipeTitle {
+    background-color: lightyellow;
+    border: solid black;
+    padding: 20px;
+}
+
+
+#title {
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+#foodRecipe {
+    background-color: lightyellow;
+    height: fit-content;
+    margin-top: 20px;
+    padding: 50px;
+    height: 300px;
+    width: 70%;
+    border: solid black;
+    display: inline-block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+#drinkRecipe {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    float: right;
+    width: 29%;
+    height: 400px;
+    background-color: lightyellow;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+
+#drinks {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+#foodImage {
+    height: 20%;
+    width: 20%;
+    border-radius: 100px;
+    position: relative;
+}
+    
+#drinkImage {
+    height: 20%;
+    width: 20%;
+    border-radius: 100px;
+    position: relative;
+    float: right;
+}
+
+#DrinkButton {
+    display: flex;
+    justify-content: center;
+    
+}
