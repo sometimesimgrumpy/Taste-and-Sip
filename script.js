@@ -27,10 +27,17 @@ function displayCocktail(data) {
     const drink_div = document.getElementById("drinkName");
 
     const drink_name = drink.drinks[0].strDrink; 
+    const drinkImage = drink.drinks[0].strDrinkThumb; 
     console.log(drink_name);
 
     drink_div.innerHTML = "";
     drink_div.append(drink_name);
+
+    const imageDiv = document.createElement("img")
+    imageDiv.setAttribute("src", drinkImage)
+    drink_div.append(imageDiv)
+
+    
 
     // const heading = document.createElement("h1");
     
