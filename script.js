@@ -38,10 +38,21 @@ function displayCocktail(data) {
     // heading.innerHTML = drink_btn_result;
     // drink_btn_result.appendChild(heading);
 
-    // const drink_img = document.createElement("img");
-    // drink_img.src = drink.strDrinkThumb;
-    // drink_div.appendChild(drink_img);
-    // document.body.style.backgroundImage = "url('" + drink.strDrinkThumb + "')";
+    const drink_img = document.createElement("img");
+    drink_img.src = drink.drinks[0].strDrinkThumb;
+    drink_div.appendChild(drink_img);
+
+    const drink_instr = document.createElement("p");
+    drink_instr.textContent = drink.drinks[0].strInstructions;
+    drink_div.appendChild(drink_instr);
+
+    const drink_ingr_list = document.createElement("ol");
+    let drink_ingr = "empty"
+    while (drink_ingr !== null ) {
+        const list_item
+    }
+
+   // document.body.style.backgroundImage = "url('" + drink.drinks[0].strDrinkThumb + "')";
 
     // drink_info for cocktail ingredients into <h2>
 
