@@ -8,7 +8,7 @@ function drinkBtn(requestUrl) {
     fetch(requestUrl)
     .then(function (response) {
         if (response.status === 200) {
-            responseText.textContent;
+            // responseText.textContent;
         }
         return response.json()
     })
@@ -22,7 +22,7 @@ function drinkBtn(requestUrl) {
 function displayCocktail(data) {
     // pulls and displays drink name
     const drink = data;
-    const drink_div = document.getElementById("drinkName");
+    const drink_div = document.querySelector(".drink");
     const drink_name = drink.drinks[0].strDrink;
 
     drink_div.innerHTML = "";
@@ -37,11 +37,4 @@ function displayCocktail(data) {
     const drink_instr = document.createElement("p");
     drink_instr.textContent = drink.drinks[0].strInstructions;
     drink_div.appendChild(drink_instr);
-
-    // const drink_ingr_list = document.createElement("ol");
-    // let drink_ingr = "empty"
-    // while (drink_ingr !== null ) {
-    //     const list_item
-    // }
-
 }
