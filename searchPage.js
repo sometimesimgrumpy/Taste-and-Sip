@@ -1,38 +1,25 @@
 var submit = document.getElementById("searchButton");
-console.log(submit);
 
+// function to handle when user input ingredients to search. Takes input values, assigns them as parameters into the URL, empties the input block and redirects the page to the search-results.html with parameters
 function handleSearchButtonEvent(event) {
     event.preventDefault();
     let userInputEl = document.querySelector("#searchInput");
     var userInput = userInputEl.value;
+    let errorparaEl = document.createElement("h3");
+    userInputEl.appendChild(errorparaEl);
+    errorparaEl.visible = false;
+
+    if (userInput === "") {
+        errorparaEl.textContent = "Please Input food items to search";
+        errorparaEl.visible = true;
+        return;
+    }
     var urlString = "./search-results.html?q=" + userInput;
     userInputEl.textContent = "";
     location.assign(urlString);
+    
 
-    // let errorparaEl = document.createElement("h3");
-    // if (userInputEl = ""){
-    //     errorparaEl.textContent = "Please Input food items to search"
-    // }
 
-    // let data = await getRecipes(userInput);
-    // let organizedData = organizeData(data.results);
-    // console.log(organizedData);
-    // createElements(organizedData.length);
-    // // window.location.href = "Url for search page";
-    // fillElements(organizedData);
-    // userInputEl.value="";
-    // isInitialSearch = false;
-    // } else {
-    // removeDivs();
-    // let userInputEl = document.querySelector("#ingInput");
-    // var userInput = userInputEl.value;
-    // let data = await getRecipes(userInput);
-    // let organizedData = organizeData(data.results);
-    // console.log(organizedData);
-    // createElements(organizedData.length);
-    // // window.location.href = "Url for search page";
-    // fillElements(organizedData);
-    // userInputEl.value="";
 }
 
 submit.addEventListener("click", handleSearchButtonEvent);
