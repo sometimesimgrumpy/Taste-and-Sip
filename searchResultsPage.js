@@ -139,9 +139,9 @@ document.querySelector("#search-results").addEventListener("click", function (ev
         console.log(resultId);
         let resultIndex = resultId[1];
         console.log(resultIndex);
-        window.localStorage.setItem("currentRecipe", data[resultIndex]);
+        window.localStorage.setItem("currentRecipe", JSON.stringify(data[resultIndex]));
         console.log(data[resultIndex])
-        // location.assign("./Recipe-Page-Html.html");
+        location.assign("./Recipe-Page-Html.html");
     }
 });
 }
