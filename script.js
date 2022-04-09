@@ -38,23 +38,6 @@ function displayCocktail(data) {
     drink_instr.textContent = drink.drinks[0].strInstructions;
     drink_div.appendChild(drink_instr);
 
-
-    // pulls and displays all cocktail ingredients
-    const drink_ingr_list = document.createElement("ul");
-    drink_div.appendChild(drink_ingr_list);
-
-    const list_item = Object.keys(drink)
-    .filter(function (ingredients) {
-        return ingredients.indexOf("strIngredient") == 0;
-    })
-    .reduce(function (ingredients, ingredient) {
-        if (drink[ingredient] != null) {
-            ingredients[ingredient] = drink[ingredient];
-        }
-        return ingredients;
-    }, {});
-
-
     for (let key in list_item) {
         let value = list_item[key];
         listItem = document.createElement("li");
