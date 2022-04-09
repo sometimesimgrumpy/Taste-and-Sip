@@ -11,22 +11,18 @@ var isInitialSearch = true;
 var searchUrl = window.location.href;
 var searchInput = searchUrl.split("=")
 console.log(searchInput);
-// getRecipes(seachInput[1]);
+
 
 async function init() {
-    // let submit = document.querySelector("#submitButton");
-    // submit.addEventListener("click", async function(event) {
-    //     event.preventDefault();
         if(isInitialSearch) {
-        // let userInputEl = document.querySelector("#ingInput");
-        // var userInput = userInputEl.value;
+
         let data = await getRecipes(searchInput[1]);
         let organizedData = organizeData(data.results);
         console.log(organizedData);
         createElements(organizedData.length);
-        // window.location.href = "Url for search page";
+
         fillElements(organizedData);
-        // userInputEl.value="";
+
         isInitialSearch = false;
         } else {
         removeDivs();
@@ -36,12 +32,10 @@ async function init() {
         let organizedData = organizeData(data.results);
         console.log(organizedData);
         createElements(organizedData.length);
-        // window.location.href = "Url for search page";
+
         fillElements(organizedData);
         userInputEl.value="";
         }    
-    // });
-
 }
 
 async function getRecipes(searchInput) {
@@ -54,6 +48,7 @@ async function getRecipes(searchInput) {
 
 function organizeData (data) {
     let searchData = [];
+    console.log(data);
     for (let i = 0; i < data.length; i++) {
         
     const name = data[i].name;
@@ -62,13 +57,14 @@ function organizeData (data) {
     const yields = data[i].yields;
     const ingredients = data[i].sections[0].components;
     const time = data[i].total_time_minutes;
+    const instr = data[i].instructions;
     let altTime;
     if (data[i].total_time_tier?.display_tier !== null) {
         altTime = data[i].total_time_tier?.display_tier;
     } else {
         altTime = "";
     }
-    const array = [name, descr, img, yields, ingredients, time, altTime];
+    const array = [name, descr, img, yields, ingredients, time, altTime, instr];
     searchData.push(array);
     }
     return searchData;
@@ -84,6 +80,7 @@ function fillElements(data) {
         imgIcon.setAttribute("src", dataArray[2]);
         document.querySelector("#servings"+i).textContent = dataArray[3];    
     }
+    navigateToRecipePage(data);
 }
 
 
@@ -101,6 +98,8 @@ function createElements(length) {
     let likeIcon = document.createElement("i");
     let searchResultsEl = document.querySelector("#search-results");
 
+    mainDiv.setAttribute("id", "result"+i);
+    mainDiv.setAttribute("class", "search-resultEl");
     img.setAttribute("class", "thumbImg");
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
@@ -131,6 +130,30 @@ function removeDivs() {
     }
 }
 
+function navigateToRecipePage(data) {
+document.querySelector("#search-results").addEventListener("click", function (event) {
+    let clickTarget = event.target.parentElement.parentElement;
+    console.log(data);
+    if(clickTarget.classList.contains("search-resultEl")) {
+        let resultId = clickTarget.id.split("t");
+        console.log(resultId);
+        let resultIndex = resultId[1];
+        console.log(resultIndex);
+        window.localStorage.setItem("currentRecipe", data[resultIndex]);
+        console.log(data[resultIndex])
+        // location.assign("./Recipe-Page-Html.html");
+    }
+});
+}
+
+function saveSearchDataPullSavedRecipes(data) {
+window.localStorage.setItem("currentSearchData", JSON.stringify(data));
+let savedRecipes = window.localStorage.getItem("savedRecipes");
+if (savedRecipes == null) {
+    savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
+}
+
+}
 init();
 
 
