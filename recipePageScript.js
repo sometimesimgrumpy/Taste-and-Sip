@@ -39,7 +39,7 @@ function createandFillElements() {
     } else if (currentRecipe[5] === null ) {
         recipeTime.textContent = "This recipe can be made in " + currentRecipe[6].toLowerCase();
     } else {
-    recipeTime.textContent = "Cooking this recipe will take " + currentRecipe[5].toLowerCase();
+    recipeTime.textContent = "Cooking this recipe will take " + currentRecipe[5]?.toLowerCase();
     }
 
     for(let i=0; i < ingredients.length; i++) {

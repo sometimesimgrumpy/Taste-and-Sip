@@ -46,11 +46,11 @@ function displayCocktail(data) {
     drink_instr.textContent = drink.drinks[0].strInstructions;
     drink_div.appendChild(drink_instr);
 
-    const drink_ingr_list = document.createElement("ol");
-    let drink_ingr = "empty"
-    while (drink_ingr !== null ) {
-        const list_item
-    }
+    // const drink_ingr_list = document.createElement("ol");
+    // let drink_ingr = "empty"
+    // while (drink_ingr !== null ) {
+    //     const list_item
+    // }
 
    // document.body.style.backgroundImage = "url('" + drink.drinks[0].strDrinkThumb + "')";
 
