@@ -10,15 +10,12 @@ var index = 0;
 var isInitialSearch = true;
 var searchUrl = window.location.href;
 var searchInput = searchUrl.split("=")
-console.log(searchInput);
-
 
 async function init() {
         if(isInitialSearch) {
 
         let data = await getRecipes(searchInput[1]);
         let organizedData = organizeData(data.results);
-        console.log(organizedData);
         createElements(organizedData.length);
 
         fillElements(organizedData);
@@ -30,7 +27,7 @@ async function init() {
         var userInput = userInputEl.value;
         let data = await getRecipes(userInput);
         let organizedData = organizeData(data.results);
-        console.log(organizedData);
+
         createElements(organizedData.length);
 
         fillElements(organizedData);
@@ -48,9 +45,8 @@ async function getRecipes(searchInput) {
 
 function organizeData (data) {
     let searchData = [];
-    console.log(data);
+
     for (let i = 0; i < data.length; i++) {
-        
     const name = data[i].name;
     const descr = data[i].description;
     const img = data[i].thumbnail_url;
@@ -71,7 +67,6 @@ function organizeData (data) {
 }
 
 function fillElements(data) {
-    // 9 total elements in search result div, so 0-8
     for (let i = 0; i < data.length; i++) {
         let dataArray = data[i];
         document.querySelector("#recipe"+i).textContent = dataArray[0];
@@ -133,14 +128,14 @@ function removeDivs() {
 function navigateToRecipePage(data) {
 document.querySelector("#search-results").addEventListener("click", function (event) {
     let clickTarget = event.target.parentElement.parentElement;
-    console.log(data);
+
     if(clickTarget.classList.contains("search-resultEl")) {
         let resultId = clickTarget.id.split("t");
-        console.log(resultId);
+
         let resultIndex = resultId[1];
-        console.log(resultIndex);
+
         window.localStorage.setItem("currentRecipe", JSON.stringify(data[resultIndex]));
-        console.log(data[resultIndex])
+
         location.assign("./Recipe-Page-Html.html");
     }
 });

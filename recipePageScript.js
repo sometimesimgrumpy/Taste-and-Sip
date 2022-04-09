@@ -1,12 +1,10 @@
 function createandFillElements() {
 
     let currentRecipe = JSON.parse(window.localStorage.getItem("currentRecipe"));
-    console.log(currentRecipe);
-
+ 
     document.title = currentRecipe[0];
     let recipeTitleH1 = document.querySelector("#title");
     let recipeTitleEl = document.querySelector("#recipeTitle");
-    let foodImage = document.querySelector("#foodImage");
     let recipeDiv = document.querySelector(".Food");
 
     let ingredients = currentRecipe[4];
@@ -14,6 +12,8 @@ function createandFillElements() {
     let buttonDiv = document.createElement("div");
     let saveButton = document.createElement("button");
     let likeIcon = document.createElement("i");
+    let mainFoodImg = document.createElement("img");
+    let mainFoodImgDiv = document.createElement("div");
     let recipeDescrip = document.createElement("p");
     let recipeTime = document.createElement("h3");
     let recipeServings = document.createElement("h4");
@@ -23,8 +23,8 @@ function createandFillElements() {
     let instructionList = document.createElement("ol");  
     
 
-
-    foodImage.setAttribute("src", currentRecipe[2]);
+    mainFoodImgDiv.setAttribute("id", "mainFoodImg");
+    mainFoodImg.setAttribute("src", currentRecipe[2]);
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
 
@@ -56,7 +56,9 @@ function createandFillElements() {
 
     saveButton.appendChild(likeIcon);
     buttonDiv.appendChild(saveButton);
-    recipeTitleEl.appendChild(buttonDiv)
+    recipeTitleEl.appendChild(buttonDiv);
+    mainFoodImgDiv.appendChild(mainFoodImg);
+    recipeDiv.appendChild(mainFoodImgDiv),
     recipeDiv.appendChild(recipeDescrip);
     recipeDiv.appendChild(recipeTime);
     recipeDiv.appendChild(recipeServings);
