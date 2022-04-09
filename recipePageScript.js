@@ -27,6 +27,7 @@ function createandFillElements() {
     mainFoodImg.setAttribute("src", currentRecipe[2]);
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
+    buttonDiv.setAttribute("id", "likeButton");
 
     recipeTitleH1.textContent = currentRecipe[0];
     recipeDescrip.textContent = currentRecipe[1];
@@ -68,4 +69,29 @@ function createandFillElements() {
     recipeDiv.appendChild(instructionList);
 }
 
+function saveRecipe() {
+    let currentRecipe = JSON.parse(window.localStorage.getItem("currentRecipe"));
+    let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
+    if (savedRecipes === null) {
+        savedRecipes = [];
+    }
+
+    let likeButton = document.querySelector("#likeButton");
+    likeButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let currentSavedRecipe = [currentRecipe[0], currentRecipe];
+        for (let i=0; i <savedRecipes.length; i++) {
+            if (savedRecipes[i] == currentSavedRecipe) {
+                return;
+            } else {
+                savedRecipes.push(currentSavedRecipe);
+                console.log(savedRecipes);
+            }
+        }
+        window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    });
+}
+
+
 createandFillElements();
+saveRecipe();
