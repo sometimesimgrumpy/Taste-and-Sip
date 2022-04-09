@@ -88,16 +88,13 @@ function createElements(length) {
     let recipeName = document.createElement("h3");
     let descrip = document.createElement("p");
     let servings = document.createElement("p");
-    let buttonDiv = document.createElement("div");
-    let saveButton = document.createElement("button");
-    let likeIcon = document.createElement("i");
+
     let searchResultsEl = document.querySelector("#search-results");
 
     mainDiv.setAttribute("id", "result"+i);
     mainDiv.setAttribute("class", "search-resultEl");
     img.setAttribute("class", "thumbImg");
-    likeIcon.setAttribute("class", "fa fa-heart");
-    likeIcon.setAttribute("aria-hidden", "true");
+
 
     img.setAttribute("id", "thumbImg"+i);
     recipeName.setAttribute("id", "recipe"+i);
@@ -108,11 +105,9 @@ function createElements(length) {
     textDiv.appendChild(recipeName);
     textDiv.appendChild(descrip);
     textDiv.appendChild(servings);
-    saveButton.appendChild(likeIcon);
-    buttonDiv.appendChild(saveButton);
     mainDiv.appendChild(imgDiv);
     mainDiv.appendChild(textDiv);
-    mainDiv.appendChild(buttonDiv);
+
 
     searchResultsEl.appendChild(mainDiv);
     }
@@ -143,9 +138,14 @@ document.querySelector("#search-results").addEventListener("click", function (ev
 
 function saveSearchDataPullSavedRecipes(data) {
 window.localStorage.setItem("currentSearchData", JSON.stringify(data));
-let savedRecipes = window.localStorage.getItem("savedRecipes");
+let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
 if (savedRecipes == null) {
     savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
+}
+let recipeDropdown = document.querySelector(".navbar-dropdown");
+for (let i=0; i <savedRecipes.length; i++){
+    let savedItem = document.createElement("a");
+    savedItem.textContent
 }
 
 }
