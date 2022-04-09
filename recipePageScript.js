@@ -1,12 +1,10 @@
 function createandFillElements() {
 
     let currentRecipe = JSON.parse(window.localStorage.getItem("currentRecipe"));
-    console.log(currentRecipe);
-
+ 
     document.title = currentRecipe[0];
     let recipeTitleH1 = document.querySelector("#title");
     let recipeTitleEl = document.querySelector("#recipeTitle");
-    let foodImage = document.querySelector("#foodImage");
     let recipeDiv = document.querySelector(".Food");
 
     let ingredients = currentRecipe[4];
