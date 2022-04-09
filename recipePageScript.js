@@ -1,7 +1,7 @@
 function createandFillElements() {
 
     let currentRecipe = JSON.parse(window.localStorage.getItem("currentRecipe"));
- 
+
     document.title = currentRecipe[0];
     let recipeTitleH1 = document.querySelector("#title");
     let recipeTitleEl = document.querySelector("#recipeTitle");
@@ -34,12 +34,12 @@ function createandFillElements() {
     ingredientTitle.textContent = "Ingredients: ";
     instructionTitle.textContent = "Cooking Instructions: ";
 
-    if (currentRecipe[5] === null && currentRecipe[5] === null) {
+    if (currentRecipe[6] === null && currentRecipe[5] === null) {
         recipeTime.textContent = "This recipe does not have a estimated cooking time.... so, plan for all day(:";
     } else if (currentRecipe[5] === null ) {
-        recipeTime.textContent = "This recipe can be made in " + currentRecipe[6].toLowerCase();
+        recipeTime.textContent = "This recipe can be made in " + currentRecipe[6].toLowerCase;
     } else {
-    recipeTime.textContent = "Cooking this recipe will take " + currentRecipe[5].toLowerCase();
+    recipeTime.textContent = "Cooking this recipe will take " + currentRecipe[5] + " minutes";
     }
 
     for(let i=0; i < ingredients.length; i++) {

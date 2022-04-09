@@ -37,12 +37,4 @@ function displayCocktail(data) {
     const drink_instr = document.createElement("p");
     drink_instr.textContent = drink.drinks[0].strInstructions;
     drink_div.appendChild(drink_instr);
-
-    for (let key in list_item) {
-        let value = list_item[key];
-        listItem = document.createElement("li");
-        listItem.innerHTML = value;
-        drink_ingr_list.appendChild(listItem); 
-    }
-
 }
