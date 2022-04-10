@@ -80,14 +80,19 @@ function saveRecipe() {
     likeButton.addEventListener("click", function(event) {
         event.preventDefault();
         let currentSavedRecipe = [currentRecipe[0], currentRecipe];
-        for (let i=0; i <savedRecipes.length; i++) {
-            if (savedRecipes[i] == currentSavedRecipe) {
-                return;
-            } else {
-                savedRecipes.push(currentSavedRecipe);
-                console.log(savedRecipes);
+        if (savedRecipes.length > 0){
+            for (let i=0; i <savedRecipes.length; i++) {
+                if (savedRecipes[i] == currentSavedRecipe) {
+                    return;
+                } else {
+                    savedRecipes.push(currentSavedRecipe);
+                    console.log(savedRecipes);
+                }
             }
-        }
+    } else {
+    savedRecipes.push(currentSavedRecipe);
+    console.log(savedRecipes);
+    }
         window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     });
 }
