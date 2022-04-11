@@ -87,13 +87,14 @@ function saveRecipe() {
         console.log(currentSavedRecipe.length);
         if (savedRecipes.length > 0) {
             for (let i= 0; i < savedRecipes.length; i++) {
-                if (savedRecipes[i] == currentSavedRecipe) {
+                if (savedRecipes[i] === currentSavedRecipe) {
                     console.log("saving matching recipe");
                     return;
                 } else {
                     savedRecipes.push(currentSavedRecipe);
                     console.log(savedRecipes);
                     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+                    location.assign("./search-results.html");
                     return;
                 }
             }
@@ -101,9 +102,11 @@ function saveRecipe() {
     savedRecipes.push(currentSavedRecipe);
     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     console.log(savedRecipes);
+    location.assign("./search-results.html");
     }
     // window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     // console.log(savedRecipes);
+
     });
 }
 
