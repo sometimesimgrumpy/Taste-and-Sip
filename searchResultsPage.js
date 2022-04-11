@@ -141,7 +141,8 @@ function saveSearchDataPullSavedRecipes(data) {
 window.localStorage.setItem("currentSearchData", JSON.stringify(data));
 let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
 if (savedRecipes == null) {
-    savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
+    savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!";
+    return;
 }
 let recipeDropdown = document.querySelector("#recipeBox");
 for (let i=0; i <savedRecipes.length; i++) {
