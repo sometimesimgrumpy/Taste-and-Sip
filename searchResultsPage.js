@@ -161,14 +161,14 @@ function navigateToSavedRecipe () {
     document.querySelector("#recipeBox").addEventListener("click", function (event) {
         let clickTarget = event.target;
         if(clickTarget.classList.contains("dropdown-item")) {
-            let savedRecipes = window.localStorage.getItem("savedRecipes");
+            let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
             let resultId = clickTarget.id.split("m");
     
             let resultIndex = resultId[1];
             let goToRecipe = savedRecipes[resultIndex];
             window.localStorage.setItem("currentRecipe", JSON.stringify(goToRecipe[1]));
-            console.log(savedRecipes);
-            // location.assign("./Recipe-Page-Html.html");
+            console.log(goToRecipe[1]);
+            location.assign("./Recipe-Page-Html.html");
         }
     });
 }
