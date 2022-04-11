@@ -150,6 +150,7 @@ for (let i=0; i <savedRecipes.length; i++) {
     savedItem.textContent = currentRecipe[0].substring(0, 50) + "...";
     console.log(currentRecipe[0].substring(0,50) + "...");
     savedItem.setAttribute("href", "#");
+    savedItem.setAttribute("class", "dropdown-item");
     savedItem.setAttribute("id", "savedItem" + i);
     recipeDropdown.appendChild(savedItem);
 }
