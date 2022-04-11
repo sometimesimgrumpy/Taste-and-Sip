@@ -34,7 +34,7 @@ function createandFillElements() {
     recipeServings.textContent = currentRecipe[3];
     ingredientTitle.textContent = "Ingredients: ";
     instructionTitle.textContent = "Cooking Instructions: ";
-    buttonDiv.textContent="Save this Recipe!"
+    saveButton.textContent="Save this Recipe!"
 
     if (currentRecipe[6] === null && currentRecipe[5] === null) {
         recipeTime.textContent = "This recipe does not have a estimated cooking time.... so, plan for all day(:";
