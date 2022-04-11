@@ -94,7 +94,8 @@ function saveRecipe() {
                     savedRecipes.push(currentSavedRecipe);
                     console.log(savedRecipes);
                     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
-                    location.assign("./search-results.html");
+                    let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
+                    location.assign("./search-results.html?q=" + searchValues);
                     return;
                 }
             }
@@ -102,6 +103,8 @@ function saveRecipe() {
     savedRecipes.push(currentSavedRecipe);
     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     console.log(savedRecipes);
+    let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
+    location.assign("./search-results.html?q=" + searchValues);
     location.assign("./search-results.html");
     }
     // window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
