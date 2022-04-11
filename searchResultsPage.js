@@ -167,7 +167,8 @@ function navigateToSavedRecipe () {
             let resultIndex = resultId[1];
             let goToRecipe = savedRecipes[resultIndex];
             window.localStorage.setItem("currentRecipe", JSON.stringify(goToRecipe[1]));
-            location.assign("./Recipe-Page-Html.html");
+            console.log(goToRecipe[1]);
+            // location.assign("./Recipe-Page-Html.html");
         }
     });
 }
