@@ -19,7 +19,7 @@ async function init() {
         createElements(organizedData.length);
 
         fillElements(organizedData);
-
+        saveSearchDataPullSavedRecipes(organizedData)
         isInitialSearch = false;
         } else {
         removeDivs();
@@ -32,7 +32,8 @@ async function init() {
 
         fillElements(organizedData);
         userInputEl.value="";
-        }    
+        saveSearchDataPullSavedRecipes(organizedData)
+        }
 }
 
 async function getRecipes(searchInput) {
@@ -142,17 +143,20 @@ let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
 if (savedRecipes == null) {
     savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
 }
-let recipeDropdown = document.querySelector(".navbar-dropdown");
+let recipeDropdown = document.querySelector("#recipeBox");
 for (let i=0; i <savedRecipes.length; i++) {
     let savedItem = document.createElement("a");
-    let currentRecipe = savedRecipe[i];
+    let currentRecipe = savedRecipes[i];
     savedItem.textContent = currentRecipe[0].substring(0, 50) + "...";
+    console.log(currentRecipe[0].substring(0,50) + "...");
     savedItem.setAttribute("href", "#");
     savedItem.setAttribute("id", "savedItem" + i);
     recipeDropdown.appendChild(savedItem);
 }
 
 }
+
 init();
+
 
 
