@@ -157,7 +157,24 @@ for (let i=0; i <savedRecipes.length; i++) {
 
 }
 
-init();
+function navigateToSavedRecipe () {
+    document.querySelector("#recipeBox").addEventListener("click", function (event) {
+        let clickTarget = event.target;
+        if(clickTarget.classList.contains("dropdown-item")) {
+            let savedRecipes = window.localStorage.getItem("savedRecipes");
+            let resultId = clickTarget.id.split("m");
+    
+            let resultIndex = resultId[1];
+            let goToRecipe = savedRecipes[resultIndex];
+            window.localStorage.setItem("currentRecipe", JSON.stringify(goToRecipe[1]));
+            location.assign("./Recipe-Page-Html.html");
+        }
+    });
+}
 
+
+
+init();
+navigateToSavedRecipe();
 
 
