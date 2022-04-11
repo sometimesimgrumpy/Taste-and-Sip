@@ -28,6 +28,7 @@ function createandFillElements() {
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
     buttonDiv.setAttribute("id", "likeButton");
+    saveButton.setAttribute("class", "button is-success")
 
     recipeTitleH1.textContent = currentRecipe[0];
     recipeDescrip.textContent = currentRecipe[1];
