@@ -143,9 +143,13 @@ if (savedRecipes == null) {
     savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
 }
 let recipeDropdown = document.querySelector(".navbar-dropdown");
-for (let i=0; i <savedRecipes.length; i++){
+for (let i=0; i <savedRecipes.length; i++) {
     let savedItem = document.createElement("a");
-    savedItem.textContent
+    let currentRecipe = savedRecipe[i];
+    savedItem.textContent = currentRecipe[0].substring(0, 50) + "...";
+    savedItem.setAttribute("href", "#");
+    savedItem.setAttribute("id", "savedItem" + i);
+    recipeDropdown.appendChild(savedItem);
 }
 
 }
