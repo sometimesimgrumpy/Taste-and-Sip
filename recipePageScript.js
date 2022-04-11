@@ -57,7 +57,7 @@ function createandFillElements() {
 
     saveButton.appendChild(likeIcon);
     buttonDiv.appendChild(saveButton);
-    recipeTitleEl.appendChild(buttonDiv);
+    // recipeTitleEl.appendChild(buttonDiv);
     mainFoodImgDiv.appendChild(mainFoodImg);
     recipeDiv.appendChild(mainFoodImgDiv),
     recipeDiv.appendChild(recipeDescrip);
@@ -67,6 +67,7 @@ function createandFillElements() {
     recipeDiv.appendChild(ingredientList);
     recipeDiv.appendChild(instructionTitle);
     recipeDiv.appendChild(instructionList);
+    recipeDiv.appendChild(buttonDiv);
 }
 
 function saveRecipe() {
@@ -80,8 +81,8 @@ function saveRecipe() {
     likeButton.addEventListener("click", function(event) {
         event.preventDefault();
         let currentSavedRecipe = [currentRecipe[0], currentRecipe];
-        if (savedRecipes.length > 0){
-            for (let i=0; i <savedRecipes.length; i++) {
+        if (savedRecipes.length > 0) {
+            for (let i= 0; i < savedRecipes.length; i++) {
                 if (savedRecipes[i] == currentSavedRecipe) {
                     return;
                 } else {
@@ -93,7 +94,8 @@ function saveRecipe() {
     savedRecipes.push(currentSavedRecipe);
     console.log(savedRecipes);
     }
-        window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    console.log(savedRecipes);
     });
 }
 

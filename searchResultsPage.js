@@ -19,7 +19,7 @@ async function init() {
         createElements(organizedData.length);
 
         fillElements(organizedData);
-
+        saveSearchDataPullSavedRecipes(organizedData)
         isInitialSearch = false;
         } else {
         removeDivs();
@@ -32,7 +32,8 @@ async function init() {
 
         fillElements(organizedData);
         userInputEl.value="";
-        }    
+        saveSearchDataPullSavedRecipes(organizedData)
+        }
 }
 
 async function getRecipes(searchInput) {
@@ -142,13 +143,38 @@ let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
 if (savedRecipes == null) {
     savedRecipes = "Your Recipe Box is empty! Heart your favorite recipes to add them!"
 }
-let recipeDropdown = document.querySelector(".navbar-dropdown");
-for (let i=0; i <savedRecipes.length; i++){
+let recipeDropdown = document.querySelector("#recipeBox");
+for (let i=0; i <savedRecipes.length; i++) {
     let savedItem = document.createElement("a");
-    savedItem.textContent
+    let currentRecipe = savedRecipes[i];
+    savedItem.textContent = currentRecipe[0].substring(0, 50) + "...";
+    console.log(currentRecipe[0].substring(0,50) + "...");
+    savedItem.setAttribute("href", "#");
+    savedItem.setAttribute("class", "dropdown-item");
+    savedItem.setAttribute("id", "savedItem" + i);
+    recipeDropdown.appendChild(savedItem);
 }
 
 }
+
+function navigateToSavedRecipe () {
+    document.querySelector("#recipeBox").addEventListener("click", function (event) {
+        let clickTarget = event.target;
+        if(clickTarget.classList.contains("dropdown-item")) {
+            let savedRecipes = window.localStorage.getItem("savedRecipes");
+            let resultId = clickTarget.id.split("m");
+    
+            let resultIndex = resultId[1];
+            let goToRecipe = savedRecipes[resultIndex];
+            window.localStorage.setItem("currentRecipe", JSON.stringify(goToRecipe[1]));
+            location.assign("./Recipe-Page-Html.html");
+        }
+    });
+}
+
+
+
 init();
+navigateToSavedRecipe();
 
 
