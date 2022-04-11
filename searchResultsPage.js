@@ -37,7 +37,7 @@ async function init() {
 }
 
 async function getRecipes(searchInput) {
-    
+    window.localStorage.setItem("searchValues", JSON.stringify(searchInput));
     const Url = 'https://tasty.p.rapidapi.com/recipes/list?from=' + index + "&size=5&q=" + searchInput;
     const response = await fetch(Url, fetchOptions);
     const rawData = await response.json();
