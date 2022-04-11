@@ -1,4 +1,4 @@
-.recipeTitle {
+#recipeTitle {
     border: 2px solid black;
     padding: 20px;
 }
@@ -78,8 +78,11 @@
     font-size: 0.75rem;
 }
 
-button {
-    background-color: rgb(167, 219, 116);
+
+#likeButton {
+    float: right;
+    margin: 1%;
+    padding: 1%;
 }
 
 
@@ -103,3 +106,6 @@ button {
 
     #drinkRecipe {
         width: 100%;
+    }
+
+}
