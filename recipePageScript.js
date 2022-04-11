@@ -27,12 +27,15 @@ function createandFillElements() {
     mainFoodImg.setAttribute("src", currentRecipe[2]);
     likeIcon.setAttribute("class", "fa fa-heart");
     likeIcon.setAttribute("aria-hidden", "true");
+    buttonDiv.setAttribute("id", "likeButton");
+    saveButton.setAttribute("class", "button is-success")
 
     recipeTitleH1.textContent = currentRecipe[0];
     recipeDescrip.textContent = currentRecipe[1];
     recipeServings.textContent = currentRecipe[3];
     ingredientTitle.textContent = "Ingredients: ";
     instructionTitle.textContent = "Cooking Instructions: ";
+    saveButton.textContent="Save this Recipe!"
 
     if (currentRecipe[6] === null && currentRecipe[5] === null) {
         recipeTime.textContent = "This recipe does not have a estimated cooking time.... so, plan for all day(:";
@@ -56,7 +59,6 @@ function createandFillElements() {
 
     saveButton.appendChild(likeIcon);
     buttonDiv.appendChild(saveButton);
-    recipeTitleEl.appendChild(buttonDiv);
     mainFoodImgDiv.appendChild(mainFoodImg);
     recipeDiv.appendChild(mainFoodImgDiv),
     recipeDiv.appendChild(recipeDescrip);
@@ -66,6 +68,45 @@ function createandFillElements() {
     recipeDiv.appendChild(ingredientList);
     recipeDiv.appendChild(instructionTitle);
     recipeDiv.appendChild(instructionList);
+    recipeDiv.appendChild(buttonDiv);
 }
 
+function saveRecipe() {
+    let currentRecipe = JSON.parse(window.localStorage.getItem("currentRecipe"));
+    let savedRecipes = JSON.parse(window.localStorage.getItem("savedRecipes"));
+    if (savedRecipes === null) {
+        savedRecipes = [];
+    }
+
+    let likeButton = document.querySelector("#likeButton");
+    likeButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let currentSavedRecipe = [currentRecipe[0], currentRecipe];
+        console.log(currentRecipe);
+        console.log(currentSavedRecipe);
+        console.log(currentSavedRecipe.length);
+        if (savedRecipes.length > 0) {
+            for (let i= 0; i < savedRecipes.length; i++) {
+                if (savedRecipes[i] == currentSavedRecipe) {
+                    console.log("saving matching recipe");
+                    return;
+                } else {
+                    savedRecipes.push(currentSavedRecipe);
+                    console.log(savedRecipes);
+                    window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+                    return;
+                }
+            }
+    } else {
+    savedRecipes.push(currentSavedRecipe);
+    window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    console.log(savedRecipes);
+    }
+    // window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    // console.log(savedRecipes);
+    });
+}
+
+
 createandFillElements();
+saveRecipe();

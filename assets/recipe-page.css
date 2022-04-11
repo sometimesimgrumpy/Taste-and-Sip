@@ -1,12 +1,15 @@
-.recipeTitle {
+#recipeTitle {
     border: 2px solid black;
     padding: 20px;
 }
 
 
 #title {
+    font-size: 2rem;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: oblique;
+    font-weight: bolder;
+
 }
 
 
@@ -14,24 +17,43 @@
 #foodRecipe {
     height: fit-content;
     margin-top: 20px;
-    padding: 10px;
-    height: 300px;
+    padding: 2%;
+    height: fit-content;
     width: 70%;
     border: 2px solid black;
     display: inline-block;
     word-wrap: break-word;
 }
 
+.Food {
+    font-size: 1rem;
+    font-family: Georgia, serif;
+}
+
+.drink {
+    font-size: 1rem;
+    font-family: Georgia, serif;
+
+}
+
+#recipeInfo {
+    font-size: 1rem;
+}
 
 #drinkRecipe {
+    display: inline-block;
     margin-top: 20px;
     padding: 20px;
     border: 2px solid black;
     float: right;
     width: 29%;
-    height: 400px;
+    height: fit-content;
     word-wrap: break-word;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#drinks {
+    font-size: 1rem;
 }
 
 
@@ -53,5 +75,37 @@
 #DrinkButton {
     display: flex;
     justify-content: center;
-    
+    font-size: 0.75rem;
+}
+
+
+#likeButton {
+    float: right;
+    margin: 1%;
+    padding: 1%;
+}
+
+
+@media screen and (max-width:768px)  {
+    #foodRecipe {
+        
+        width: 100%;
+    }
+
+    #drinkRecipe {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width:992px)  {
+    #foodRecipe {
+        
+        width: 100%;
+    }
+
+    #drinkRecipe {
+        width: 100%;
+    }
+
 }
