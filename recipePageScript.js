@@ -4,7 +4,7 @@ function createandFillElements() {
 
     document.title = currentRecipe[0];
     let recipeTitleH1 = document.querySelector("#title");
-    let recipeTitleEl = document.querySelector("#recipeTitle");
+
     let recipeDiv = document.querySelector(".Food");
 
     let ingredients = currentRecipe[4];
@@ -82,17 +82,14 @@ function saveRecipe() {
     likeButton.addEventListener("click", function(event) {
         event.preventDefault();
         let currentSavedRecipe = [currentRecipe[0], currentRecipe];
-        console.log(currentRecipe);
-        console.log(currentSavedRecipe);
-        console.log(currentSavedRecipe.length);
+
         if (savedRecipes.length > 0) {
             for (let i= 0; i < savedRecipes.length; i++) {
                 if (savedRecipes[i] === currentSavedRecipe) {
-                    console.log("saving matching recipe");
+
                     return;
                 } else {
                     savedRecipes.push(currentSavedRecipe);
-                    console.log(savedRecipes);
                     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
                     let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
                     location.assign("./search-results.html?q=" + searchValues);
@@ -102,14 +99,9 @@ function saveRecipe() {
     } else {
     savedRecipes.push(currentSavedRecipe);
     window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
-    console.log(savedRecipes);
     let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
     location.assign("./search-results.html?q=" + searchValues);
-    location.assign("./search-results.html");
     }
-    // window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
-    // console.log(savedRecipes);
-
     });
 }
 

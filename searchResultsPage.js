@@ -16,6 +16,7 @@ async function init() {
 
         let data = await getRecipes(searchInput[1]);
         let organizedData = organizeData(data.results);
+
         createElements(organizedData.length);
 
         fillElements(organizedData);
@@ -32,7 +33,7 @@ async function init() {
 
         fillElements(organizedData);
         userInputEl.value="";
-        saveSearchDataPullSavedRecipes(organizedData)
+        saveSearchDataPullSavedRecipes(organizedData);
         }
 }
 
@@ -46,7 +47,6 @@ async function getRecipes(searchInput) {
 
 function organizeData (data) {
     let searchData = [];
-
     for (let i = 0; i < data.length; i++) {
     const name = data[i].name;
     const descr = data[i].description;
@@ -149,7 +149,7 @@ for (let i=0; i <savedRecipes.length; i++) {
     let savedItem = document.createElement("a");
     let currentRecipe = savedRecipes[i];
     savedItem.textContent = currentRecipe[0].substring(0, 50) + "...";
-    console.log(currentRecipe[0].substring(0,50) + "...");
+
     savedItem.setAttribute("href", "#");
     savedItem.setAttribute("class", "dropdown-item");
     savedItem.setAttribute("id", "savedItem" + i);
@@ -168,7 +168,6 @@ function navigateToSavedRecipe () {
             let resultIndex = resultId[1];
             let goToRecipe = savedRecipes[resultIndex];
             window.localStorage.setItem("currentRecipe", JSON.stringify(goToRecipe[1]));
-            console.log(goToRecipe[1]);
             location.assign("./Recipe-Page-Html.html");
         }
     });
