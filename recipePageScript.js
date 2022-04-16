@@ -82,26 +82,22 @@ function saveRecipe() {
     likeButton.addEventListener("click", function(event) {
         event.preventDefault();
         let currentSavedRecipe = [currentRecipe[0], currentRecipe];
-
-        if (savedRecipes.length > 0) {
-            for (let i= 0; i < savedRecipes.length; i++) {
-                if (savedRecipes[i] === currentSavedRecipe) {
-
-                    return;
-                } else {
-                    savedRecipes.push(currentSavedRecipe);
-                    window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
-                    let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
-                    location.assign("./search-results.html?q=" + searchValues);
-                    return;
-                }
+        console.log(savedRecipes[0]);
+        console.log(currentSavedRecipe);
+        let contains = false;
+        for (let recipe of savedRecipes) {
+            console.log(recipe);
+            if (recipe.includes(currentSavedRecipe[0])) {
+                contains = true;
+                break;
             }
-    } else {
-    savedRecipes.push(currentSavedRecipe);
-    window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
-    let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
-    location.assign("./search-results.html?q=" + searchValues);
-    }
+        }
+        if (!contains) {
+            savedRecipes.push(currentSavedRecipe);
+            window.localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+            let searchValues = JSON.parse(window.localStorage.getItem("searchValues"));
+            location.assign("./search-results.html?q=" + searchValues);
+        }
     });
 }
 
